@@ -3,7 +3,9 @@ import React, { Fragment, useState } from 'react';
 import {calcularTotal} from '../helpers';
 
 //sfc(snippets React)
-const Formulario = ({cantidad,guardarCantidad,plazo,guardarPlazo}) => { //Aplicamos Destructuring
+const Formulario = (props) => { //Aplicamos Destructuring
+
+    const {cantidad,guardarCantidad,plazo,guardarPlazo,total,guardarTotal} = props;
 
     //Definir Hook useState de manera local
     const [error, guardarError] = useState(false);
@@ -24,8 +26,9 @@ const Formulario = ({cantidad,guardarCantidad,plazo,guardarPlazo}) => { //Aplica
 
        //Realizar cotización
        const total = calcularTotal(cantidad,plazo);
-       console.log(total);
-
+       //console.log(total);
+       //Una vez calculado, guardarTotal
+       guardarTotal(total);
     }
 
     return (
