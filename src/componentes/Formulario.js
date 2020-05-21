@@ -1,5 +1,6 @@
 //imr(snippets React)
 import React, { Fragment, useState } from 'react';
+import {calcularTotal} from '../helpers';
 
 //sfc(snippets React)
 const Formulario = ({cantidad,guardarCantidad,plazo,guardarPlazo}) => { //Aplicamos Destructuring
@@ -21,7 +22,9 @@ const Formulario = ({cantidad,guardarCantidad,plazo,guardarPlazo}) => { //Aplica
        //Elimina el error previo, si el usuario corrige el error
        guardarError(false);
 
-        //Realizar cotización
+       //Realizar cotización
+       const total = calcularTotal(cantidad,plazo);
+       console.log(total);
 
     }
 
