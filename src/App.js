@@ -1,3 +1,4 @@
+// Usando 'imr' de react snippets se crea.
 import React, { Fragment } from 'react';
 import Header from './componentes/Header';
 
@@ -16,10 +17,10 @@ function App() {
 function App() {
   return (
     <Fragment>
-      <Header />
-      <Header />
-      <Header />
-      <Header />
+      <Header 
+          titulo = "Cotizador de Préstamos"
+          //descripcion = "Utiliza el formulario y obtén una cotización"
+      />
     </Fragment>
   );
 }
