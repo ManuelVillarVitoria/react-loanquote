@@ -5,7 +5,7 @@ import {calcularTotal} from '../helpers';
 //sfc(snippets React)
 const Formulario = (props) => { //Aplicamos Destructuring
 
-    const {cantidad,guardarCantidad,plazo,guardarPlazo,total,guardarTotal} = props;
+    const {cantidad,guardarCantidad,plazo,guardarPlazo,guardarTotal,guardarCargando} = props;
 
     //Definir Hook useState de manera local
     const [error, guardarError] = useState(false);
@@ -23,12 +23,21 @@ const Formulario = (props) => { //Aplicamos Destructuring
        }
        //Elimina el error previo, si el usuario corrige el error
        guardarError(false);
+        
+       //Habilitar el spinner
+       guardarCargando(true);
 
-       //Realizar cotización
-       const total = calcularTotal(cantidad,plazo);
-       //console.log(total);
-       //Una vez calculado, guardarTotal
-       guardarTotal(total);
+       setTimeout(() => {
+            //Realizar cotización
+            const total = calcularTotal(cantidad,plazo);
+            //console.log(total);
+            //Una vez calculado, guardarTotal
+            guardarTotal(total);
+
+            //Deshabilitar el Spinner
+            guardarCargando(false);
+       },3000);
+       
     }
 
     return (
