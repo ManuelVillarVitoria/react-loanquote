@@ -1,22 +1,29 @@
 //imr(snippets React)
-import React from 'react';
+import React, { useState } from 'react';
 
 //sfc(snippets React)
 const Formulario = ({cantidad,guardarCantidad,plazo,guardarPlazo}) => { //Aplicamos Destructuring
 
-    //Definir el HookState usando array destructuring
-    //Los valores siempre fluyen del padre al hijo y no al revés, por eso pondremos 
-    // el State en App.js
-    //const [cantidad, guardarCantidad] = useState(0);
+    //Definir Hook useState de manera local
+    const [error, guardarError] = useState(false);
 
-    //const leerCantidad = (e) => {
-        //console.log('Escribiendo cantidad....');
-        //guardarCantidad( parseInt(e.target.value) );
+    //Función para cuando el usuario hace submit
+    const calcularPrestamo = e => {
+        e.preventDefault();
+        //console.log('Enviando formulario...');
+
+        //Validar
+        if(cantidad === 0 || plazo === '') {
+            //console.log('Hay un error...');
+            guardarError(true);
+       }
+
+        //Realizar cotización
+
+    }
 
     return (
-        <form>
-           {cantidad}
-           {plazo}
+        <form onSubmit={calcularPrestamo}>
             <div className="row">
                 <div>
                     <label>Cantidad Prestamo</label>
@@ -24,7 +31,6 @@ const Formulario = ({cantidad,guardarCantidad,plazo,guardarPlazo}) => { //Aplica
                         className="u-full-width" 
                         type="number" 
                         placeholder="Ejemplo: 3000" 
-                        //onChange={ leerCantidad }
                         onChange= {e => guardarCantidad( parseInt(e.target.value) )}
                     />
                 </div>

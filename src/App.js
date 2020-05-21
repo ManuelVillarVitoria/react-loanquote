@@ -9,7 +9,7 @@ function App() {
   //El primer valor contiene el valor y el segundo es 
   //la función que va actualizando el valor.
   const [cantidad, guardarCantidad] = useState(0);
-  const [plazo, guardarPlazo] = useState(0);
+  const [plazo, guardarPlazo] = useState('');
 
   return (
     <Fragment>
