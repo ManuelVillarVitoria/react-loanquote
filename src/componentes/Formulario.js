@@ -1,5 +1,5 @@
 //imr(snippets React)
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 //sfc(snippets React)
 const Formulario = ({cantidad,guardarCantidad,plazo,guardarPlazo}) => { //Aplicamos Destructuring
@@ -16,46 +16,55 @@ const Formulario = ({cantidad,guardarCantidad,plazo,guardarPlazo}) => { //Aplica
         if(cantidad === 0 || plazo === '') {
             //console.log('Hay un error...');
             guardarError(true);
+            return;
        }
+       //Elimina el error previo, si el usuario corrige el error
+       guardarError(false);
 
         //Realizar cotización
 
     }
 
     return (
-        <form onSubmit={calcularPrestamo}>
-            <div className="row">
-                <div>
-                    <label>Cantidad Prestamo</label>
-                    <input 
-                        className="u-full-width" 
-                        type="number" 
-                        placeholder="Ejemplo: 3000" 
-                        onChange= {e => guardarCantidad( parseInt(e.target.value) )}
-                    />
+        <Fragment>
+            <form onSubmit={calcularPrestamo}>
+                <div className="row">
+                    <div>
+                        <label>Cantidad Prestamo</label>
+                        <input 
+                            className="u-full-width" 
+                            type="number" 
+                            placeholder="Ejemplo: 3000" 
+                            onChange= {e => guardarCantidad( parseInt(e.target.value) )}
+                        />
+                    </div>
+                    <div>
+                        <label>Plazo para Pagar</label>
+                        <select 
+                            className="u-full-width"
+                            onChange= {e => guardarPlazo( parseInt(e.target.value) )}
+                        >
+                            <option value="">Seleccionar</option>
+                            <option value="3">3 meses</option>
+                            <option value="6">6 meses</option>
+                            <option value="12">12 meses</option>
+                            <option value="24">24 meses</option>
+                        </select>
+                    </div>
+                    <div>
+                        <input 
+                            type="submit" 
+                            value="Calcular" 
+                            className="button-primary u-full-width" 
+                        />
+                    </div>
                 </div>
-                <div>
-                    <label>Plazo para Pagar</label>
-                    <select 
-                        className="u-full-width"
-                        onChange= {e => guardarPlazo( parseInt(e.target.value) )}
-                    >
-                        <option value="">Seleccionar</option>
-                        <option value="3">3 meses</option>
-                        <option value="6">6 meses</option>
-                        <option value="12">12 meses</option>
-                        <option value="24">24 meses</option>
-                    </select>
-                </div>
-                <div>
-                    <input 
-                        type="submit" 
-                        value="Calcular" 
-                        className="button-primary u-full-width" 
-                    />
-                </div>
-            </div>
-        </form>
+            </form>
+            
+            {/*Si el error es verdadero mostrar el mensaje de error y sino, no no mostrar nada */}
+            { (error) ? <p className="error">Todos los campos son obligatorios</p> : null}
+           
+        </Fragment>
       );
 
 }
