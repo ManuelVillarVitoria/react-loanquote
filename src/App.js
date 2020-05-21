@@ -1,16 +1,28 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import Header from './componentes/Header';
 import Formulario from './componentes/Formulario';
 
 
 function App() {
+
+  //Definir los HookState usando array destructuring
+  //El primer valor contiene el valor y el segundo es 
+  //la función que va actualizando el valor.
+  const [cantidad, guardarCantidad] = useState(0);
+  const [plazo, guardarPlazo] = useState(0);
+
   return (
     <Fragment>
       <Header 
           titulo = "Cotizador de Préstamos"
       />
       <div className="container">
-        <Formulario />
+        <Formulario
+          cantidad = {cantidad} 
+          guardarCantidad = {guardarCantidad} 
+          plazo = {plazo} 
+          guardarPlazo = {guardarPlazo} 
+        />
       </div>
     </Fragment>
   );
